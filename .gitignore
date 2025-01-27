@@ -1,0 +1,10 @@
+.venv/
+*.env
+__pycache__/
+*.py[cod]
+test.py
+.vscode
+images/
+*.png
+*.jpg
+*.sqlite
