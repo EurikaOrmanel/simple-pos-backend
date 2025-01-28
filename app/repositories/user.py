@@ -3,7 +3,10 @@ from sqlalchemy.future import select
 from uuid import UUID
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
+from app.enums.user_role import UserRole
 from app.models.user import User
+from app.schemas.admin_auth import AdminRegisterInput
+
 
 class UserRepository:
     def __init__(self, session: AsyncSession):
@@ -14,7 +17,21 @@ class UserRepository:
         result = await self.session.execute(stmt)
         return result.scalar_one_or_none()
 
+    async def create(self, user: User | AdminRegisterInput):
+        user = User(**user.model_dump())
+        if isinstance(user, AdminRegisterInput):
+            user.role = UserRole.ADMIN
+        else:
+            user.role = UserRole.USER
+        self.session.add(user)
+        await self.session.commit()
+        await self.session.refresh(user)
+        return user
 
+    async def find_by_id(self, user_id: UUID):
+        stmt = select(User).where(User.id == user_id)
+        result = await self.session.execute(stmt)
+        return result.scalar_one_or_none()
 
     async def find_by_email(self, email: str) -> Optional[User]:
         query = select(User).where(User.email == email)

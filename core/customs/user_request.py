@@ -15,5 +15,5 @@ class UserRequest(Request):
         send: Send = ...,
     ):
         super().__init__(scope, receive, send)
-        self.user = user
+        self.current_user = user
         self.user_id: str | None = user_id

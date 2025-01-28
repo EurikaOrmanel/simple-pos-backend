@@ -12,7 +12,7 @@ class ProductCreateInput(BaseModel):
 
 class ProductUpdateInput(BaseModel):
     name: Optional[str] = Field(default=None)
-    price: Optional[float] = Field(default=0.0)
+    price: Optional[float] = Field(default=None)
     image: Optional[str] = Field(default=None)
 
 

@@ -23,7 +23,9 @@ async def handle_user_token(
 
     if "id" in decoded_token:
         request.user_id = decoded_token["id"]
-        request.user = await UserRepository(db_session).find_by_id(decoded_token["id"])
+        request.current_user = await UserRepository(db_session).find_by_id(
+            decoded_token["id"]
+        )
     else:
         raise SimpleException(
             status_code=HTTPStatus.UNAUTHORIZED,

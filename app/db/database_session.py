@@ -64,7 +64,6 @@ DB Name: {EnvironmentSettings.SQL_DB_NAME}
 )
 
 string_connection = f"postgresql+asyncpg://{EnvironmentSettings.SQL_DB_USERNAME}:{EnvironmentSettings.SQL_DB_PASSWORD}@{EnvironmentSettings.SQL_DB_HOST}:{EnvironmentSettings.SQL_DB_PORT}/{EnvironmentSettings.SQL_DB_NAME}"
-print("string_connection", string_connection)
 sessionmanager = DatabaseSessionManager(string_connection)
 
 

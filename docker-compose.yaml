@@ -1,16 +1,19 @@
 services:
   app:
     image: simple-pos-api
-    depends_on:
-      - db
+
     build:
       context: .
       dockerfile: Dockerfile
 
+    depends_on:
+      db:
+        condition: service_healthy
+
     command: uvicorn main:app --host 0.0.0.0 --port ${BACKEND_PORT}
     volumes:
       - .:/app
-    
+
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     networks:
@@ -22,23 +25,24 @@ services:
     command: -p ${SQL_DB_PORT}
     volumes:
       - simple_pos_db:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "${SQL_DB_PORT}:${SQL_DB_PORT}"
+
     environment:
       - POSTGRES_DB=${SQL_DB_NAME}
       - POSTGRES_USER=${SQL_DB_USERNAME}
       - POSTGRES_PASSWORD=${SQL_DB_PASSWORD}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${SQL_DB_USERNAME} -d ${SQL_DB_NAME}"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${SQL_DB_USERNAME} -d ${SQL_DB_NAME} -p ${SQL_DB_PORT}",
+        ]
       interval: 5s
       timeout: 3s
       retries: 3
     networks:
       - mynetwork
-  
-
-
 
 volumes:
   simple_pos_db:

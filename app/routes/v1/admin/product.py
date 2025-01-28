@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 
 from ....dependencies.controllers.product import AdminProductControllerDep
 from ....dependencies.user.token_header import handle_user_token
@@ -11,27 +11,31 @@ product_router = APIRouter(
 
 
 @product_router.get("/")
-async def get_all_products(controller: AdminProductControllerDep):
-    return controller.get_all_products()
+async def get_all_products(
+    controller: AdminProductControllerDep,
+    page: int = Query(1),
+    limit: int = Query(10),
+):
+    return await controller.get_all_products( limit,page)
 
 
 @product_router.get("/{product_id}")
 async def get_product(product_id: int, controller: AdminProductControllerDep):
-    return controller.get_product(product_id)
+    return await controller.get_product(product_id)
 
 
 @product_router.post("/")
 async def create_product(
     product: ProductCreateInput, controller: AdminProductControllerDep
 ):
-    return controller.create_product(product)
+    return await controller.create_product(product)
 
 
 @product_router.put("/{product_id}")
 async def update_product(
     product_id: int, product: ProductUpdateInput, controller: AdminProductControllerDep
 ):
-    return controller.update_product(product_id, product)
+    return await controller.update_product(product_id, product)
 
 
 @product_router.delete("/{product_id}")

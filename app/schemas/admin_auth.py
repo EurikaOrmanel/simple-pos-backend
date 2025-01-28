@@ -8,3 +8,10 @@ class AdminLoginInput(BaseModel):
 
 class AdminLoginOutput(BaseModel):
     access_token: str
+
+
+
+class AdminRegisterInput(BaseModel):
+    email: str
+    password: str
+    name: str
