@@ -28,7 +28,7 @@ class ProductRepository:
         offset = (page - 1) * limit
         query = select(Product).limit(limit).offset(offset)
         result = await self.db_session.execute(query)
-        return list(result.scalars().all())
+        return result.scalars().all()
 
     async def update(self, product_id: int, product_update: ProductUpdateInput) -> Optional[Product]:
         try:

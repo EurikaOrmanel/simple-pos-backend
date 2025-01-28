@@ -15,12 +15,12 @@ class Customer(SqlBase):
         default=uuid4,
     )
 
-    full_name = Column(
+    name = Column(
         String(200),
         nullable=False,
     )
 
-    phone_number = Column(
+    phone = Column(
         String,
         nullable=False,
         unique=True,
