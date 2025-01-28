@@ -2,12 +2,12 @@ from sqlalchemy import Column, ForeignKey, Float, Enum
 from datetime import datetime, timezone
 from sqlalchemy.dialects.postgresql import UUID, TIMESTAMP
 from uuid import uuid4
-from ..db.sql_base_class import Base
+from ..db.sql_base_class import SqlBase
 from sqlalchemy.orm import relationship, Mapped
 from typing import List
 
 
-class Order(Base):
+class Order(SqlBase):
     __tablename__ = "orders"
 
     id = Column(

@@ -2,10 +2,10 @@ from sqlalchemy import Column, String, Float
 from datetime import datetime, timezone
 from sqlalchemy.dialects.postgresql import UUID, TIMESTAMP
 from uuid import uuid4
-from ..db.sql_base_class import Base
+from app.db.sql_base import SqlBase
 
 
-class Product(Base):
+class Product(SqlBase):
     __tablename__ = "products"
 
     id = Column(
@@ -16,7 +16,7 @@ class Product(Base):
     )
 
     name = Column(
-        String(200),
+        String(100),
         nullable=False,
     )
 
@@ -27,7 +27,7 @@ class Product(Base):
 
     image = Column(
         String,
-        nullable=False,
+        nullable=True,
     )
 
     created_at = Column(

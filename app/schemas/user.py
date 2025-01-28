@@ -4,10 +4,9 @@ from datetime import datetime
 from typing import Optional
 from enum import Enum
 
+from app.enums.user_role import UserRole
 
-class UserRole(str, Enum):
-    ADMIN = "ADMIN"
-    USER = "POS"
+
 
 
 class UserInput(BaseModel):

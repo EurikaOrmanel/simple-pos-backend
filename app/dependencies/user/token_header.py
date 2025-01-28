@@ -1,7 +1,8 @@
 from http import HTTPStatus
 from typing import Annotated
 from fastapi import Header
-from ...dependencies.db import DBSessionDep
+
+from app.dependencies.db.db_session_dep import DBSessionDep
 from ...repositories.user import UserRepository
 from core.customs.simple_exception_type import SimpleExceptionType
 from core.customs.simple_exceptions import SimpleException

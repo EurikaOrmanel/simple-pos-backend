@@ -3,8 +3,9 @@ from jose import jwt, JWTError, ExpiredSignatureError
 from typing import Any
 from fastapi import HTTPException
 from http import HTTPStatus
-from core.customs.exception_type import SimpleExceptionType
-from core.exceptions.simple_exception import SimpleException
+
+from core.customs.simple_exception_type import SimpleExceptionType
+from core.customs.simple_exceptions import SimpleException
 
 
 class JWTHandler:

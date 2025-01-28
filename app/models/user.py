@@ -2,9 +2,8 @@ from sqlalchemy import Boolean, Column, String, Enum
 from datetime import datetime, timezone
 from sqlalchemy.dialects.postgresql import UUID, TIMESTAMP
 from uuid import uuid4
-from ..db.sql_base_class import SqlBase
-from ..schemas.user import UserRole
-
+from app.schemas.user import UserRole
+from app.db.sql_base import SqlBase
 
 class User(SqlBase):
     __tablename__ = "users"
@@ -36,8 +35,6 @@ class User(SqlBase):
         String,
         nullable=False,
     )
-
-
 
     role = Column(
         Enum(UserRole),

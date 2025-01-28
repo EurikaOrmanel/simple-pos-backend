@@ -19,14 +19,16 @@ class AdminProductController:
             raise SimpleException(
                 status_code=HTTPStatus.BAD_REQUEST,
                 message="Product with this name already exists",
-                err_type=SimpleExceptionType.PRODUCT_ALREADY_EXISTS,
+                err_type=SimpleExceptionType.ALREADY_EXISTS,
             )
         return await self.product_repo.create(product)
 
     async def get_product(self, product_id: int):
-        product = await self.product_repo.get(product_id)
+        product = await self.product_repo.get_by_id(product_id)
         if not product:
-            raise SimpleException("Product not found")
+            raise SimpleException(
+                HTTPStatus.NOT_FOUND, "Product not found", SimpleExceptionType.NOT_FOUND
+            )
         return product
 
     async def get_all_products(self, limit: int = 10, page: int = 1):

@@ -1,13 +1,21 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-
+from contextlib import asynccontextmanager
 from core.customs.simple_exceptions import SimpleException
-import app.db.sql_base_class
 from app.routes import api_routers
+from app.db.database_session import sessionmanager
+import app.db.sql_base_class
 
-app = FastAPI(title="Simple POS API")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # await init_db()
+    yield
+    if sessionmanager._engine is not None:
+        await sessionmanager.close()
 
+
+app = FastAPI(title="Simple POS API", lifespan=lifespan)
 
 app.include_router(api_routers)
 

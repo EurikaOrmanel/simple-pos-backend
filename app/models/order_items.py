@@ -2,10 +2,10 @@ from sqlalchemy import Column, ForeignKey, Float
 from datetime import datetime, timezone
 from sqlalchemy.dialects.postgresql import UUID, TIMESTAMP
 from uuid import uuid4
-from ..db.sql_base_class import Base
+from ..db.sql_base_class import SqlBase
 
 
-class OrderItem(Base):
+class OrderItem(SqlBase):
     __tablename__ = "order_items"
 
     id = Column(

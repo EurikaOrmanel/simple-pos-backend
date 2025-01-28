@@ -2,10 +2,10 @@ from sqlalchemy import Column, String
 from datetime import datetime, timezone
 from sqlalchemy.dialects.postgresql import UUID, TIMESTAMP
 from uuid import uuid4
-from ..db.sql_base_class import Base
+from app.db.sql_base import SqlBase
 
 
-class Customer(Base):
+class Customer(SqlBase):
     __tablename__ = "customers"
 
     id = Column(
