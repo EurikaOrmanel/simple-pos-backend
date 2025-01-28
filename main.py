@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -6,6 +8,10 @@ from core.customs.simple_exceptions import SimpleException
 from app.routes import api_routers
 from app.db.database_session import sessionmanager
 import app.db.sql_base_class
+
+# Load environment variables at the very start
+load_dotenv()
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
