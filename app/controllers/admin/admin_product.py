@@ -29,8 +29,8 @@ class AdminProductController:
             raise SimpleException("Product not found")
         return product
 
-    async def get_all_products(self):
-        products = await self.product_repo.get_all()
+    async def get_all_products(self, limit: int = 10, page: int = 1):
+        products = await self.product_repo.get_all(limit, page)
         if not products:
             return []  # Return empty list instead of error for get_all
         return products

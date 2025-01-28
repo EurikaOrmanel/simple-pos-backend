@@ -10,8 +10,8 @@ class EnvSettings(BaseSettings):
     SQL_DB_NAME: str
     SQL_DB_PORT: str
     SQL_TEST_DB_NAME: str
-    REFRESH_TOKEN_EXP_MINS: int
     ACCESS_TOKEN_EXP_MIN: int
+    USER_TOKEN_SECRET: str
 
     class Config:
         env_file = ".env"

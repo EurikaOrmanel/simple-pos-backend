@@ -1,12 +1,19 @@
-from pydantic import BaseModel
+from typing import Optional
+from pydantic import BaseModel, Field
 from uuid import UUID
 from datetime import datetime
 
 
-class ProductInput(BaseModel):
+class ProductCreateInput(BaseModel):
     name: str
     price: float
     image: str
+
+
+class ProductUpdateInput(BaseModel):
+    name: Optional[str] = Field(default=None)
+    price: Optional[float] = Field(default=0.0)
+    image: Optional[str] = Field(default=None)
 
 
 class ProductOutput(BaseModel):
