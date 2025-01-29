@@ -17,7 +17,7 @@ order_router = APIRouter(
 
 @order_router.post(
     "/create",
-    response_model=OrderResponse,
+    response_model=OrderOutput,
 )
 async def create_order(
     order: OrderInput,

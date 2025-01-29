@@ -1,5 +1,6 @@
 from http import HTTPStatus
 
+from app.models.product import Product
 from core.customs.simple_exception_type import SimpleExceptionType
 from ...dependencies.db.db_session_dep import DBSessionDep
 from ...repositories.product import ProductRepository
@@ -21,7 +22,7 @@ class AdminProductController:
                 message="Product with this name already exists",
                 err_type=SimpleExceptionType.ALREADY_EXISTS,
             )
-        return await self.product_repo.create(product)
+        return await self.product_repo.create(Product(**product.model_dump()))
 
     async def get_product(self, product_id: int):
         product = await self.product_repo.get_by_id(product_id)

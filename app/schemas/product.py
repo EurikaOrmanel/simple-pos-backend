@@ -8,14 +8,14 @@ from decimal import Decimal
 class ProductBase(BaseModel):
     name: str
     price: Decimal
-    photo_url: str
+    image: str
 
 
 
 class ProductUpdate(BaseModel):
     name: str | None = None
-    prices: Decimal | None = None
-    photo_url: str | None = None
+    price: Decimal | None = None
+    image: str | None = None
 
 
 class ProductResponse(ProductBase):

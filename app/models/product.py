@@ -13,8 +13,8 @@ class Product(SqlBase):
 
     id = Column(PostgresUUID(as_uuid=True), primary_key=True, default=uuid4)
     name = Column(String, nullable=False)
-    prices = Column(Numeric(10, 2), nullable=False)
-    photo_url = Column(String)
+    price = Column(Numeric(10, 2), nullable=False)
+    image = Column(String)
 
     created_at = Column(
         TIMESTAMP(timezone=True),

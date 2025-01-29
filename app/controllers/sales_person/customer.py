@@ -1,5 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.models.customer import Customer
 from app.repositories.customer import CustomerRepository
 from app.schemas.customer import CustomerInput
 
@@ -12,9 +13,8 @@ class SalesPersonCustomerController:
     async def suggest_customers(self, keyword: str):
         return await self.customer_repository.search_customers(keyword)
 
-    async def create_customer(self, customer: CustomerInput):
-        customer = await self.customer_repository.find_by_phone(customer.phone)
+    async def create_customer(self, body: CustomerInput):
+        customer = await self.customer_repository.find_by_phone(body.phone)
         if customer:
             return customer
-        return await self.customer_repository.create_customer(customer)
-    
+        return await self.customer_repository.create_customer(Customer(**body.model_dump()))

@@ -1,3 +1,4 @@
+from uuid import UUID
 from fastapi import APIRouter, Depends, Query
 
 from ....dependencies.controllers.product import AdminProductControllerDep
@@ -16,11 +17,11 @@ async def get_all_products(
     page: int = Query(1),
     limit: int = Query(10),
 ):
-    return await controller.get_all_products( limit,page)
+    return await controller.get_all_products(limit, page)
 
 
 @product_router.get("/{product_id}")
-async def get_product(product_id: int, controller: AdminProductControllerDep):
+async def get_product(product_id: UUID,  controller: AdminProductControllerDep):
     return await controller.get_product(product_id)
 
 
@@ -33,7 +34,7 @@ async def create_product(
 
 @product_router.put("/{product_id}")
 async def update_product(
-    product_id: int, product: ProductUpdateInput, controller: AdminProductControllerDep
+    product_id: UUID, product: ProductUpdateInput, controller: AdminProductControllerDep
 ):
     return await controller.update_product(product_id, product)
 

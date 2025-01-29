@@ -27,5 +27,4 @@ async def create_customer(
     controller: SalesPersonCustomerControllerDep,
     customer: CustomerInput,
 ):
-    customer = Customer(**customer.model_dump())
     return await controller.create_customer(customer)
