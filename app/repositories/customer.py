@@ -11,7 +11,7 @@ class CustomerRepository:
         self.db_session = db_session
 
     async def search_customers(self, keyword: str) -> List[Customer]:
-        query = select(Customer).where(Customer.name.like(f"%{keyword}%"))
+        query = select(Customer).where(Customer.name.ilike(f"%{keyword}%"))
         result = await self.db_session.execute(query)
         return result.scalars().all()
 
