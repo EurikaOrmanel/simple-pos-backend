@@ -11,7 +11,8 @@ from app.models.order_items import OrderItem
 class OrderRepository:
     def __init__(self, db: AsyncSession):
         self.db = db
-        db.
+
+
 
     async def create_order(self, order: Order) -> Order:
         try:
@@ -34,6 +35,7 @@ class OrderRepository:
                 .where(Order.id == order_id)
             )
             result = await self.db.execute(stmt)
+            print("result", result)
             return result.unique().scalar_one_or_none()
         except SQLAlchemyError as e:
             raise Exception(f"Failed to get order: {str(e)}")

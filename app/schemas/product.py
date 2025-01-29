@@ -14,7 +14,7 @@ class ProductBase(BaseModel):
 
 class ProductUpdate(BaseModel):
     name: str | None = None
-    unit_charges: Decimal | None = None
+    prices: Decimal | None = None
     photo_url: str | None = None
 
 

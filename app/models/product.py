@@ -13,7 +13,7 @@ class Product(SqlBase):
 
     id = Column(PostgresUUID(as_uuid=True), primary_key=True, default=uuid4)
     name = Column(String, nullable=False)
-    unit_charges = Column(Numeric(10, 2), nullable=False)
+    prices = Column(Numeric(10, 2), nullable=False)
     photo_url = Column(String)
 
     created_at = Column(
