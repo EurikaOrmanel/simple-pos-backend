@@ -43,13 +43,13 @@ services:
       retries: 3
     networks:
       - mynetwork
-  test:
-    build: .
-    command: ["pytest", "--disable-warnings"]
-    depends_on:
-      - db
-    networks:
-      - mynetwork
+  # test:
+  #   build: .
+  #   command: ["pytest", "--disable-warnings"]
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - mynetwork
 volumes:
   simple_pos_db:
 
