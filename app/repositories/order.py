@@ -12,8 +12,6 @@ class OrderRepository:
     def __init__(self, db: AsyncSession):
         self.db = db
 
-
-
     async def create_order(self, order: Order) -> Order:
         try:
             self.db.add(order)
@@ -30,7 +28,7 @@ class OrderRepository:
                 select(Order)
                 .options(
                     selectinload(Order.customer),
-                    selectinload(Order.items).selectinload(OrderItem.product)
+                    selectinload(Order.items).selectinload(OrderItem.product),
                 )
                 .where(Order.id == order_id)
             )
@@ -38,3 +36,11 @@ class OrderRepository:
             return result.unique().scalar_one_or_none()
         except SQLAlchemyError as e:
             raise Exception(f"Failed to get order: {str(e)}")
+
+    async def get_all(self, page: int, limit: int):
+        try:
+            stmt = select(Order).offset((page - 1) * limit).limit(limit)
+            result = await self.db.execute(stmt)
+            return result.scalars().all()
+        except SQLAlchemyError as e:
+            raise Exception(f"Failed to get orders: {str(e)}")
