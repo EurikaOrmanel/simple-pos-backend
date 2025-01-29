@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.product import Product
 from app.repositories.product import ProductRepository
-from app.schemas.product import ProductInput
+from app.schemas.product import ProductCreateInput, ProductUpdateInput
 
 @pytest.mark.asyncio
 async def test_add_product_with_valid_details(db_session: AsyncSession):
@@ -14,7 +14,7 @@ async def test_add_product_with_valid_details(db_session: AsyncSession):
     """
     # Arrange
     product_repo = ProductRepository(db_session)
-    product_data = ProductInput(
+    product_data = ProductCreateInput(
         name="Test Product",
         price=Decimal("10.99"),
         photo_url="https://example.com/test-product.jpg"
@@ -48,7 +48,7 @@ async def test_update_product_price(db_session: AsyncSession):
     created_product = await product_repo.create(initial_product)
     
     # Update data
-    update_data = ProductUpdate(
+    update_data = ProductUpdateInput(
         price=Decimal("15.99")
     )
     

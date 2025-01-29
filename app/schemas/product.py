@@ -12,10 +12,10 @@ class ProductBase(BaseModel):
 
 
 
-class ProductUpdate(BaseModel):
-    name: str | None = None
-    price: Decimal | None = None
-    image: str | None = None
+class ProductUpdateInput(BaseModel):
+    name: Optional[str] = Field(default=None)
+    price: Optional[float] = Field(default=None)
+    image: Optional[str] = Field(default=None)
 
 
 class ProductResponse(ProductBase):

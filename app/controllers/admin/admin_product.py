@@ -49,3 +49,4 @@ class AdminProductController:
         if not existing_product:
             raise SimpleException("Product not found")
         return await self.product_repo.delete(product_id)
+

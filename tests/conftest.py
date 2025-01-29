@@ -2,7 +2,7 @@ import pytest
 import asyncio
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
-from app.db.sql_base import Base
+from app.db.sql_base import SqlBase
 from sqlalchemy.ext.asyncio import AsyncSession
 
 # Use test database URL
@@ -34,8 +34,8 @@ def event_loop():
 @pytest.fixture(scope="session")
 async def engine():
     async with test_engine.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
-        await conn.run_sync(Base.metadata.create_all)
+        await conn.run_sync(SqlBase.metadata.drop_all)
+        await conn.run_sync(SqlBase.metadata.create_all)
     yield test_engine
     await test_engine.dispose()
 

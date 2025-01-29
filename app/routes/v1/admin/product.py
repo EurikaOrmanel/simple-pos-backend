@@ -1,5 +1,7 @@
 from uuid import UUID
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, File, Query, UploadFile
+
+from app.controllers.images import ImagesController
 
 from ....dependencies.controllers.product import AdminProductControllerDep
 from ....dependencies.user.token_header import handle_user_token
@@ -42,3 +44,11 @@ async def update_product(
 @product_router.delete("/{product_id}")
 async def delete_product(product_id: int, controller: AdminProductControllerDep):
     return controller.delete_product(product_id)
+
+
+
+@product_router.post("/upload")
+async def upload_product_file(
+    file: UploadFile = File(...),
+):
+    return await ImagesController.upload(file)
