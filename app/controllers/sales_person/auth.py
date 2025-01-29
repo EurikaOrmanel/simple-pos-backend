@@ -44,7 +44,7 @@ class SalesPersonAuthController:
 
         body.password = PasswordHandler.hash(body.password)
         user = await self.user_repository.create(body)
-        return AdminAuthController.__generate_response(str(user.id))
+        return SalesPersonAuthController.__generate_response(str(user.id))
 
     @staticmethod
     def __generate_response(user_id: UUID) -> SalesPersonLoginOutput:

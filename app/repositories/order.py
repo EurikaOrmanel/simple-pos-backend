@@ -11,6 +11,7 @@ from app.models.order_items import OrderItem
 class OrderRepository:
     def __init__(self, db: AsyncSession):
         self.db = db
+        db.
 
     async def create_order(self, order: Order) -> Order:
         try:
