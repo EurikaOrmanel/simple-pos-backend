@@ -18,11 +18,11 @@ class UserRepository:
         result = await self.session.execute(stmt)
         return result.scalar_one_or_none()
 
-    async def create(self, user: SalesPersonRegisterInput | AdminRegisterInput):
-        user = User(**user.model_dump())
-        if isinstance(user, AdminRegisterInput):
+    async def create(self, user_input: SalesPersonRegisterInput | AdminRegisterInput):
+        user = User(**user_input.model_dump())
+        if isinstance(user_input, AdminRegisterInput):
             user.role = UserRole.ADMIN
-        else:
+        elif isinstance(user, SalesPersonRegisterInput):
             user.role = UserRole.USER
         self.session.add(user)
         await self.session.commit()
