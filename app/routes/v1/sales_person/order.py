@@ -21,12 +21,15 @@ order_router = APIRouter(
 )
 async def create_order(
     order: OrderInput,
-    order_controller: SalesPersonOrderControllerDep ,
+    order_controller: SalesPersonOrderControllerDep,
 ):
     return await order_controller.create_order(order)
 
 
-@order_router.get("/{order_id}")
+@order_router.get(
+    "/{order_id}",
+    response_model=OrderOutput,
+)
 async def get_order(
     order_id: UUID,
     controller: SalesPersonOrderControllerDep,

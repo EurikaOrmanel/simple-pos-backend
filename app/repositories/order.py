@@ -35,7 +35,6 @@ class OrderRepository:
                 .where(Order.id == order_id)
             )
             result = await self.db.execute(stmt)
-            print("result", result)
             return result.unique().scalar_one_or_none()
         except SQLAlchemyError as e:
             raise Exception(f"Failed to get order: {str(e)}")

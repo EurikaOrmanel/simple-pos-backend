@@ -1,8 +1,11 @@
+from http import HTTPStatus
 from uuid import UUID
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.order_items import OrderItem
 from app.repositories.order_item import OrderItemRepository
+from core.customs.simple_exception_type import SimpleExceptionType
+from core.customs.simple_exceptions import SimpleException
 
 from ...models.order import Order
 from ...schemas.order import OrderInput
@@ -27,4 +30,11 @@ class SalesPersonOrderController:
         return await self.order_repository.get_order_by_id(order.id)
 
     async def get_order(self, order_id: UUID):
-        return await self.order_repository.get_order_by_id(order_id)
+        order = await self.order_repository.get_order_by_id(order_id)
+        if not order:
+            raise SimpleException(
+                status_code=HTTPStatus.NOT_FOUND,
+                message="Order not found",
+                err_type=SimpleExceptionType.NOT_FOUND,
+            )
+        return order
