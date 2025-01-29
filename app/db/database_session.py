@@ -52,16 +52,7 @@ class DatabaseSessionManager:
 
 
 # Print both the environment variables and the connection string for debugging
-print(
-    f"""
-DB Settings:
-Username: {EnvironmentSettings.SQL_DB_USERNAME}
-Password: {EnvironmentSettings.SQL_DB_PASSWORD}
-Host: {EnvironmentSettings.SQL_DB_HOST}
-Port: {EnvironmentSettings.SQL_DB_PORT}
-DB Name: {EnvironmentSettings.SQL_DB_NAME}
-"""
-)
+
 
 string_connection = f"postgresql+asyncpg://{EnvironmentSettings.SQL_DB_USERNAME}:{EnvironmentSettings.SQL_DB_PASSWORD}@{EnvironmentSettings.SQL_DB_HOST}:{EnvironmentSettings.SQL_DB_PORT}/{EnvironmentSettings.SQL_DB_NAME}"
 sessionmanager = DatabaseSessionManager(string_connection)

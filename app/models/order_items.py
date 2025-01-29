@@ -1,8 +1,10 @@
+from sqlalchemy.orm import relationship
 from sqlalchemy import Column, ForeignKey, Float
 from datetime import datetime, timezone
 from sqlalchemy.dialects.postgresql import UUID, TIMESTAMP
 from uuid import uuid4
-from ..db.sql_base_class import SqlBase
+from app.db.sql_base import SqlBase
+
 
 
 class OrderItem(SqlBase):
@@ -31,6 +33,18 @@ class OrderItem(SqlBase):
         Float,
         nullable=False,
         default=1
+    )
+
+    order = relationship(
+        "Order",
+        back_populates="items",
+        lazy="selectin"
+    )
+
+    product = relationship(
+        "Product",
+        back_populates="order_items",
+        lazy="joined"
     )
 
     created_at = Column(

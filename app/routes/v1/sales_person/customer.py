@@ -1,12 +1,17 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Depends, Query
 from app.dependencies.controllers.sales_person.customer import (
     SalesPersonCustomerControllerDep,
 )
+from app.dependencies.user.token_header import handle_user_token
 from app.models.customer import Customer
 from app.schemas.customer import CustomerInput
 
 
-customer_router = APIRouter(prefix="/customers", tags=["customers"])
+customer_router = APIRouter(
+    prefix="/customers",
+    tags=["customers"],
+    dependencies=[Depends(handle_user_token)],
+)
 
 
 @customer_router.get("/suggest")

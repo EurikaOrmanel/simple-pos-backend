@@ -2,6 +2,27 @@ from typing import Optional
 from pydantic import BaseModel, Field
 from uuid import UUID
 from datetime import datetime
+from decimal import Decimal
+
+
+class ProductBase(BaseModel):
+    name: str
+    price: Decimal
+    photo_url: str
+
+
+
+class ProductUpdate(BaseModel):
+    name: str | None = None
+    unit_charges: Decimal | None = None
+    photo_url: str | None = None
+
+
+class ProductResponse(ProductBase):
+    id: UUID
+
+    class Config:
+        from_attributes = True
 
 
 class ProductCreateInput(BaseModel):

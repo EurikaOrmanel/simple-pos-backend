@@ -20,7 +20,6 @@ async def handle_user_token(
     db_session: DBSessionDep,
 ):
     decoded_token = jwt_handler.decode(authorization)
-
     if "id" in decoded_token:
         request.user_id = decoded_token["id"]
         request.current_user = await UserRepository(db_session).find_by_id(

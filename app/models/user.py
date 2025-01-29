@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, Column, String, Enum
 from datetime import datetime, timezone
 from sqlalchemy.dialects.postgresql import UUID, TIMESTAMP
 from uuid import uuid4
-from app.schemas.user import UserRole
 from app.db.sql_base import SqlBase
+from app.enums.user_role import UserRole
 
 class User(SqlBase):
     __tablename__ = "users"

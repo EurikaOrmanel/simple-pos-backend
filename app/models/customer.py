@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 from sqlalchemy.dialects.postgresql import UUID, TIMESTAMP
 from uuid import uuid4
 from app.db.sql_base import SqlBase
+from sqlalchemy.orm import relationship
 
 
 class Customer(SqlBase):
@@ -42,4 +43,3 @@ class Customer(SqlBase):
         TIMESTAMP(timezone=True),
         nullable=True,
     )
-
