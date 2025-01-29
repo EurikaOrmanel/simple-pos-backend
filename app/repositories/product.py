@@ -29,7 +29,7 @@ class ProductRepository:
         offset = (page - 1) * limit
         query = select(Product).limit(limit).offset(offset)
         result = await self.db.execute(query)
-        return result.scalars().all()
+        return result.scalars().unique().all()
 
     async def update(self, product_id: UUID, data: Dict[str, Any]) -> Optional[Product]:
         try:

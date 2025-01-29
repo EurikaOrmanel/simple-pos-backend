@@ -1,4 +1,5 @@
 from http import HTTPStatus
+from uuid import UUID
 
 from app.models.product import Product
 from core.customs.simple_exception_type import SimpleExceptionType
@@ -24,7 +25,10 @@ class AdminProductController:
             )
         return await self.product_repo.create(Product(**product.model_dump()))
 
-    async def get_product(self, product_id: int):
+    async def get_product(
+        self,
+        product_id: UUID,
+    ):
         product = await self.product_repo.get_by_id(product_id)
         if not product:
             raise SimpleException(
@@ -38,15 +42,18 @@ class AdminProductController:
             return []  # Return empty list instead of error for get_all
         return products
 
-    async def update_product(self, product_id: int, product: ProductUpdateInput):
-        existing_product = await self.product_repo.get(product_id)
+    async def update_product(
+        self,
+        product_id: UUID,
+        product: ProductUpdateInput,
+    ):
+        existing_product = await self.product_repo.get_by_id(product_id)
         if not existing_product:
             raise SimpleException("Product not found")
         return await self.product_repo.update(product_id, product)
 
-    async def delete_product(self, product_id: int):
-        existing_product = await self.product_repo.get(product_id)
+    async def delete_product(self, product_id: UUID):
+        existing_product = await self.product_repo.get_by_id(product_id)
         if not existing_product:
             raise SimpleException("Product not found")
         return await self.product_repo.delete(product_id)
-

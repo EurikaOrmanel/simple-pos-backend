@@ -42,7 +42,7 @@ async def update_product(
 
 
 @product_router.delete("/{product_id}")
-async def delete_product(product_id: int, controller: AdminProductControllerDep):
+async def delete_product(product_id: UUID, controller: AdminProductControllerDep):
     return controller.delete_product(product_id)
 
 

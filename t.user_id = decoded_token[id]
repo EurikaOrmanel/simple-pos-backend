@@ -1,0 +1,113 @@
+[33mcommit b210ba3a61932625b75d75ccffc90a3a1da79727[m[33m ([m[1;36mHEAD -> [m[1;32madmins[m[33m)[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Wed Jan 29 12:21:50 2025 +0000
+
+    suggesting case insensitivity
+
+[33mcommit 42a52e45d5904b5e88a52b80cd77aa9cf26a2ad4[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Wed Jan 29 12:08:44 2025 +0000
+
+    image upload
+
+[33mcommit 57b4b6b1196f19ba60da1047df8411a7d46fba3d[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Wed Jan 29 11:21:44 2025 +0000
+
+    admin auth token check
+
+[33mcommit 87ee0a0d1f6e544d6ca9847d1da7d877cf7a758d[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Wed Jan 29 11:13:03 2025 +0000
+
+    admin orders
+
+[33mcommit a4f963c38af45be788773e0aa32204adcaba4da4[m[33m ([m[1;31morigin/customer[m[33m, [m[1;32mcustomer[m[33m)[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Wed Jan 29 10:46:34 2025 +0000
+
+    input type check in repo during registration to create users
+
+[33mcommit 27c0f53e37798bd48246981c93cba32578138be2[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Wed Jan 29 10:42:12 2025 +0000
+
+    register fix
+
+[33mcommit dab2c2806c34adcdc180500cefd78e016ba1a5c0[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Wed Jan 29 09:47:41 2025 +0000
+
+    preview order fixes
+
+[33mcommit 4811c76ae4fd2f998f8e7293f1becc3aeb09275e[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Wed Jan 29 09:33:04 2025 +0000
+
+    join query issue fix for customer query
+
+[33mcommit 5bbfec3ceea45bdbc9d73cc0612090893c2fec4d[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Wed Jan 29 08:59:28 2025 +0000
+
+    using prices
+
+[33mcommit 61ee9936737968c896a52d6e57e4c57514044329[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Wed Jan 29 08:40:31 2025 +0000
+
+    admin auth controller usage reverse
+
+[33mcommit 0e5304a58873b7d5ad4c4b24cc78f61288992e6a[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Wed Jan 29 08:28:11 2025 +0000
+
+    orders handling
+
+[33mcommit 061bc9a99376411a27aa2e8ec85b7d352e920217[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Tue Jan 28 17:04:24 2025 +0000
+
+    sales persons featrues:create customer and customer suggestion endpoint ready
+
+[33mcommit 76849d3b8da5ff4ab209fff15501daff7656c4ae[m[33m ([m[1;31morigin/sales_person[m[33m, [m[1;32msales_person[m[33m)[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Tue Jan 28 16:29:03 2025 +0000
+
+    login and registration
+
+[33mcommit 2aa5789ded8dd25752d5d7646e07d0a5e611dac1[m[33m ([m[1;31morigin/models_schemas[m[33m, [m[1;32mmodels_schemas[m[33m)[m
+Author: eurikaormanel <wworgba@gmail.com>
+Date:   Tue Jan 28 14:30:11 2025 +0000
+
+    db working
+
+[33mcommit 38dc02316701fbae3131e741cbed33f05db20e04[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Tue Jan 28 14:11:16 2025 +0000
+
+    admin auth
+
+[33mcommit 3b01734103c2a8ae972ca07393951d3c6d17b4f5[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Tue Jan 28 09:53:11 2025 +0000
+
+    admin product repo and controllers
+
+[33mcommit a5db79d9eb7e1f6b273024855620e848c7647128[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Tue Jan 28 08:24:38 2025 +0000
+
+    admin and user repo and test
+
+[33mcommit ddf9946b4701e188bfad2bd5ce19f96b1c9a927e[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Tue Jan 28 08:01:43 2025 +0000
+
+    structured models
+
+[33mcommit 196f7cf3ef1703252d4f03ef833752e53250b674[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: EurikaOrmanel <wworgba@gmail.com>
+Date:   Mon Jan 27 23:33:44 2025 +0000
+
+    project init

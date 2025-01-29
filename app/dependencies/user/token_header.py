@@ -28,6 +28,14 @@ async def handle_user_token(
         request.current_user = await UserRepository(db_session).find_by_id(
             decoded_token["id"]
         )
+
+        if request.current_user is None:
+            raise SimpleException(
+                status_code=HTTPStatus.UNAUTHORIZED,
+                message="User not found",
+                err_type=SimpleExceptionType.INVALID_TOKEN_PROVIDED,
+            )
+
         if "/admin" in request.url.path and request.current_user.role != UserRole.ADMIN:
             raise SimpleException(
                 status_code=HTTPStatus.FORBIDDEN,
