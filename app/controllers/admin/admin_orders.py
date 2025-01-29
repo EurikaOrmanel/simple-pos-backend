@@ -1,13 +1,14 @@
 from app.dependencies.db.db_session_dep import DBSessionDep
+from app.repositories.order import OrderRepository
 
 
 class AdminOrdersController:
     def __init__(self, db_session: DBSessionDep):
         self.db_session = db_session
-
-    def get_orders(
+        self.order_repository = OrderRepository(db_session)
+    async def get_orders(
         self,
         page: int,
         limit: int,
     ):
-        pass
+        return await self.order_repository.get_all(page, limit)

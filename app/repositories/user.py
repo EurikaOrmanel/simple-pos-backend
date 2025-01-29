@@ -6,6 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.enums.user_role import UserRole
 from app.models.user import User
 from app.schemas.admin_auth import AdminRegisterInput
+from app.schemas.sales_person import SalesPersonRegisterInput
 
 
 class UserRepository:
@@ -17,7 +18,7 @@ class UserRepository:
         result = await self.session.execute(stmt)
         return result.scalar_one_or_none()
 
-    async def create(self, user: User | AdminRegisterInput):
+    async def create(self, user: SalesPersonRegisterInput | AdminRegisterInput):
         user = User(**user.model_dump())
         if isinstance(user, AdminRegisterInput):
             user.role = UserRole.ADMIN
