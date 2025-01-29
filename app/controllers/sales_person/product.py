@@ -7,4 +7,4 @@ class SalesPersonProductController:
         self.product_repo = ProductRepository(db_session)
 
     async def get_all_products(self, page: int, limit: int):
-        return await self.product_repo.get_all(page, limit)
+        return await self.product_repo.get_all(limit, page)
