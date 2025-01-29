@@ -6,6 +6,7 @@ from sqlalchemy import select, delete, update
 from app.models.product import Product
 from app.schemas.product import ProductCreateInput, ProductUpdateInput
 
+
 class ProductRepository:
     def __init__(self, db: AsyncSession):
         self.db = db
@@ -23,7 +24,7 @@ class ProductRepository:
     async def get_by_id(self, product_id: UUID) -> Optional[Product]:
         stmt = select(Product).filter(Product.id == product_id)
         result = await self.db.execute(stmt)
-        return result.scalar_one_or_none()
+        return result.unique().scalar_one_or_none()
 
     async def get_all(self, limit: int = 10, page: int = 1) -> List[Product]:
         offset = (page - 1) * limit

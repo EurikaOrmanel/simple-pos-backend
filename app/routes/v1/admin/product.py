@@ -23,7 +23,7 @@ async def get_all_products(
 
 
 @product_router.get("/{product_id}")
-async def get_product(product_id: UUID,  controller: AdminProductControllerDep):
+async def get_product(product_id: UUID, controller: AdminProductControllerDep):
     return await controller.get_product(product_id)
 
 
@@ -43,8 +43,7 @@ async def update_product(
 
 @product_router.delete("/{product_id}")
 async def delete_product(product_id: UUID, controller: AdminProductControllerDep):
-    return controller.delete_product(product_id)
-
+    return await controller.delete_product(product_id)
 
 
 @product_router.post("/upload")
