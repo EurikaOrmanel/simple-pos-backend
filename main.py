@@ -9,8 +9,6 @@ from app.routes import api_routers
 from app.db.database_session import sessionmanager
 import app.db.sql_base_class
 
-# Load environment variables at the very start
-load_dotenv()
 
 
 @asynccontextmanager

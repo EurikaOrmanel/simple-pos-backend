@@ -11,9 +11,11 @@ from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
+# Default database URL
+DATABASE_URL = f"postgresql+asyncpg://{EnvironmentSettings.SQL_DB_USERNAME}:{EnvironmentSettings.SQL_DB_PASSWORD}@{EnvironmentSettings.SQL_DB_HOST}:{EnvironmentSettings.SQL_DB_PORT}/{EnvironmentSettings.SQL_DB_NAME}"
 
 class DatabaseSessionManager:
-    def __init__(self, host: str, engine_kwargs: dict[str, Any] = {}):
+    def __init__(self, host: str = DATABASE_URL, engine_kwargs: dict[str, Any] = {}):
         self._engine = create_async_engine(
             host,
             **engine_kwargs,
@@ -50,14 +52,9 @@ class DatabaseSessionManager:
         finally:
             await session.close()
 
+# Create a default session manager
+sessionmanager = DatabaseSessionManager()
 
-# Print both the environment variables and the connection string for debugging
-
-
-string_connection = f"postgresql+asyncpg://{EnvironmentSettings.SQL_DB_USERNAME}:{EnvironmentSettings.SQL_DB_PASSWORD}@{EnvironmentSettings.SQL_DB_HOST}:{EnvironmentSettings.SQL_DB_PORT}/{EnvironmentSettings.SQL_DB_NAME}"
-sessionmanager = DatabaseSessionManager(string_connection)
-
-
-async def get_db_session():
+async def get_db_session() -> AsyncIterator[AsyncSession]:
     async with sessionmanager.session() as session:
         yield session

@@ -10,3 +10,4 @@ images/
 *.sqlite
 .cursorrules
 public/
+.env.test
