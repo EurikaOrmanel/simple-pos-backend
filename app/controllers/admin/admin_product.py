@@ -50,7 +50,7 @@ class AdminProductController:
         existing_product = await self.product_repo.get_by_id(product_id)
         if not existing_product:
             raise SimpleException("Product not found")
-        return await self.product_repo.update(product_id, product)
+        return await self.product_repo.update(product_id, product.model_dump())
 
     async def delete_product(self, product_id: UUID):
         existing_product = await self.product_repo.get_by_id(product_id)
