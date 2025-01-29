@@ -1,8 +1,15 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Depends, Query
 from app.dependencies.controllers.admin.order import AdminOrdersControllerDep
+from app.dependencies.user.token_header import handle_user_token
 
 
-order_router = APIRouter(prefix="/orders", tags=["orders"])
+order_router = APIRouter(
+    prefix="/orders",
+    tags=["orders"],
+    dependencies=[
+        Depends(handle_user_token),
+    ],
+)
 
 
 @order_router.get("/")
