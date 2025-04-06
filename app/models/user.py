@@ -1,0 +1,49 @@
+from sqlalchemy import Boolean, Column, String, Enum
+from datetime import datetime, timezone
+from sqlalchemy.dialects.postgresql import UUID, TIMESTAMP
+from uuid import uuid4
+from app.db.sql_base import SqlBase
+from app.enums.user_role import UserRole
+
+class User(SqlBase):
+    __tablename__ = "users"
+
+    id = Column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        unique=True,
+        default=uuid4,
+    )
+
+    name = Column(
+        String(100),
+        nullable=False,
+    )
+
+    email = Column(
+        String,
+        nullable=False,
+        unique=True,
+    )
+
+    email_verified = Column(
+        Boolean,
+        default=False,
+    )
+
+    password = Column(
+        String,
+        nullable=False,
+    )
+
+    role = Column(
+        Enum(UserRole),
+        nullable=False,
+        default=UserRole.USER,
+    )
+
+    created_at = Column(
+        TIMESTAMP(timezone=True),
+        nullable=False,
+        default=datetime.now(timezone.utc),
+    )

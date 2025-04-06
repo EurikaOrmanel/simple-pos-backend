@@ -1,45 +1,60 @@
 services:
   app:
-    image: courya-backend
+    image: simple-pos-api
+
     build:
       context: .
       dockerfile: Dockerfile
 
+    depends_on:
+      db:
+        condition: service_healthy
+
     command: uvicorn main:app --host 0.0.0.0 --port ${BACKEND_PORT}
     volumes:
       - .:/app
-    
+
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
+    networks:
+      - mynetwork
 
   db:
     image: postgres:16.3
-    container_name: simple-pos-db
+    container_name: simple_pos_db
     command: -p ${SQL_DB_PORT}
     volumes:
-      - simple-pos-db:/var/lib/postgresql/data
+      - simple_pos_db:/var/lib/postgresql/data
     ports:
       - "${SQL_DB_PORT}:${SQL_DB_PORT}"
+
     environment:
       - POSTGRES_DB=${SQL_DB_NAME}
       - POSTGRES_USER=${SQL_DB_USERNAME}
       - POSTGRES_PASSWORD=${SQL_DB_PASSWORD}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${SQL_DB_USERNAME} -d ${SQL_DB_NAME}"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${SQL_DB_USERNAME} -d ${SQL_DB_NAME} -p ${SQL_DB_PORT}",
+        ]
       interval: 5s
       timeout: 3s
       retries: 3
     networks:
       - mynetwork
-
-
-
-
+  # test:
+  #   build: .
+  #   command: ["pytest", "--disable-warnings"]
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - mynetwork
 volumes:
-  redis:
-    driver: local
-  simple-pos-db:
+  simple_pos_db:
 
 networks:
   mynetwork:
     driver: bridge
+
+
